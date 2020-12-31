@@ -1,104 +1,124 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #EEE;
-        }
-        .column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
+<style>
+    .column{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
 
-        .row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
+    .row{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
 
-        .space-row {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-evenly;
-        }
+    .space-row{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
 
-        .center-row {
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
-            justify-content: center;
-        }
+    .center-row{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .header {
-            background-color: #00519E;
-            color: #fff;
-            font-size: 24pt;
-            margin: 0pt;
-            padding: 15pt 5pt;
-            font-family: "Calibri";
-        }
+    .header{
+        background-color: #00519E;
+        color: #fff;
+        font-size: 24pt;
+        margin: 0pt;
+        padding: 15pt 5pt;
+        font-family:"Calibri";
+    }
 
-        .input {
-            color: black;
-            font-size: 14pt;
-            width: 100%;
-            font-family: "Calibri";
-        }
+    .input{
+        color: black;
+        font-size: 14pt;
+        width: 100%;
+        font-family:"Calibri";
+    }
 
-        .plain-text {
-            color: black;
-            font-size: 24pt;
-            font-family: "Calibri";
-            text-align: center;
-            width: fit-content;
-            border-radius: 5px;
-            padding: 5px;
-        }
+    .plain-text{
+        color: black;
+        font-size: 24pt;
+        font-family:"Calibri";
+        text-align: center;
+        width: fit-content;
+        border-radius:5px;
+        padding: 5px;
+    }
 
-        .settings-text {
-            color: black;
-            font-size: 24pt;
-            font-family: "Calibri";
-        }
+    .settings-text{
+        color: black;
+        font-size: 24pt;
+        font-family:"Calibri";
+    }
 
-        .input {
-            height: 20px;
-            margin: 0pt 20pt;
-            align-self: center;
-        }
-    </style>
-    <script>
-        $('select').select2({
-            minimumResultsForSearch: -1,
-            placeholder: function () {
-                $(this).data('placeholder');
-            }
-        });
-    </script>
+    .input{
+        height: 20px;
+        margin: 0pt 20pt;
+        align-self: center;
+    }
+
+    .confirmation-button{
+        background-color:#14AD54;
+        font-size: 24pt;
+        font-weight: bold;
+    }
+
+    .dropdown{
+        align-items: center;
+        align-self: center;
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content{
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropbtn {
+        width: 200px;
+        height: 20px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .option{
+        font-size: 20pt;
+    }
+
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: darkgrey;}
+
+</style>
+<script>
+</script>
 </head>
-
 <body>
     <div class="column">
-        <h1 class="header">Groepenzoeker</h1>
+        <h1 class="header">Groepenzoecker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;"
-                onclick="location.href='profile.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;"
-                onclick="location.href='finder.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
                 <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;"
-                onclick="location.href='groups.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
                 <p class="plain-text" style="font-weight: bold; background-color: #14AD54;">My Groups</p>
             </div>
         </div>
@@ -111,31 +131,39 @@
                 </div>
                 <div class="row">
                     <p class="settings-text">Categories:</p>
-                    <select data-placeholder="Yours Placeholder" multiple>
-                        <option>Value 1</option>
-                        <option>Value 2</option>
-                        <option>Value 3</option>
-                        <option>Value 4</option>
-                        <option>Value 5</option>
-                    </select>
+                    <div class="dropdown">
+                        <button class="dropbtn">...</button>
+                        <div class="dropdown-content">
+                            <select multiple>
+                                <option class="option">Computer Science</option>
+                                <option class="option">Math</option>
+                                <option class="option">Biology</option>
+                                <option class="option">Chemistry</option>
+                                <option class="option">Law</option>
+                                <option class="option">Engineering</option>
+                                <option class="option">...</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <p class="settings-text">Member limit:</p>
-                    <input class="input" type="text" id="m_limit">
+                    <input class="input" type="number" id="m_limit">
                 </div>
                 <div class="row">
                     <p class="settings-text">Looking for members:</p>
                     <input class="input" type="checkbox" id="looking">
                 </div>
-            </div>
-            <div class="column" style="width:50%; margin: 0pt 60pt">
-                <p class="settings-text" style="margin-bottom: 0px;">Member list:</p>
-                <div class="row" style="border: 1px solid #000; height:90%; margin-right: 10pt">
+                <div class="center-row">
+                    <button class="confirmation-button" style="width:50%">Create group</button>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="column" style="width:50%; margin: 0pt 60pt">
+                    <p class="settings-text" style="margin-bottom: 0px;">Member list:</p>
+                    <div class="row" style="border: 1px solid #000; height:90%; margin-right: 10pt"></div>
+                    <button class="confirmation-button" style="margin-top: 50px; width:60%; align-self:center;">Add members</button>
+            </div>
+        </div> 
     </div>
 </body>
-
 </html>
