@@ -76,6 +76,7 @@
         }
 
         .confirmation-button{
+            margin: 10pt 0;
             background-color:#14AD54;
             font-size: 24pt;
             font-weight: bold;
@@ -115,6 +116,15 @@
 
         .dropdown:hover .dropbtn {background-color: darkgrey;}
 
+        .button {
+            font-size: 24pt;
+            border: 2px solid #00519E;
+            padding-left: 10pt;
+            padding-right: 10pt;
+            margin: 10pt 0;
+            width: 50pt;
+        }
+
     </style>
 <script>
 </script>
@@ -135,6 +145,7 @@
         </div>
         <div class="row">
             <div class="column" style="width:50%; margin: 0pt 60pt">
+                <button class="button" onclick="location.href='groups.html'">&#8592</button>
                 <p class="settings-text">Create Group:</p>
                 <div class="row">
                     <p class="settings-text">Name:</p>
@@ -188,7 +199,7 @@
                 currentValue = [];
             currentValue.push(nameInput.value);
             localStorage.setItem("HCIGroups", JSON.stringify(currentValue));
-            window.location.href = "groups.html";
+            window.location.href = 'chat.html?Title=" + nameInput.value + "&Icon=emoji_food_beverage';
         }
     }
 </script>

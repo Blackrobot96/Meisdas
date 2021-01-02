@@ -86,12 +86,12 @@
     }
 
     .groupname {
-    font-size: 20pt;
-    font-weight: bold;
-    font-family: "Calibri";
-    padding: 10pt;
-    border: 3px solid #00519E;
-    flex-grow: 2;
+        font-size: 20pt;
+        font-weight: bold;
+        font-family: "Calibri";
+        padding: 10pt;
+        border: 3px solid #00519E;
+        flex-grow: 2;
     }
 
     .button {
@@ -100,12 +100,14 @@
         padding-left: 10pt;
         padding-right: 10pt;
         margin-right: 15pt;
+        width: 50pt;
     }
 
     .textarea{
-       
-        height: 200px;
-        width: 350px;
+        font-family:"Calibri";
+        height: 300px;
+        width: 400px;
+        font-size:12pt
     }
 
 </style>
@@ -118,8 +120,10 @@
     });
 
     function send(){
-        document.getElementById("chat").innerHTML += "You: " + document.getElementById("input").value + "<br/>";
-        document.getElementById("input").value = "";
+        if(document.getElementById("input").value != ""){
+            document.getElementById("chat").innerHTML += "You: " + document.getElementById("input").value + "<br/>";
+            document.getElementById("input").value = "";
+        }
     }
 </script>
 </head>
@@ -137,13 +141,12 @@
                 <p class="plain-text" style="font-weight: bold; background-color: #14AD54;">My Groups</p>
             </div>
         </div>
-    
         <div class="start-row">
             <div class="button" onclick="location.href='groups.html';">&#8592</div>
             <div id="title" class="groupname"></div>
         </div>
         <div class="row">            
-            <div class="textarea" id="textarea" contenteditable="true">
+            <div class="textarea" id="textarea" contenteditable="false">
                 P1: Hi!<br/> 
                 P2: Hello guys<br/>
                 P3: When is our next meeting?<br/>
@@ -153,7 +156,7 @@
              </div>
         </div>
         <div class="center-row">
-            <input id="input" style="width:305px;">
+            <input id="input" style="width:375px">
             <button onclick="send()">&#10148</button>
         </div>
     </div>
