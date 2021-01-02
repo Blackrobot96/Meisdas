@@ -7,6 +7,11 @@
         margin: 0;
         box-sizing: border-box;
         }
+        body {
+            background: #EEE;
+            font-family: 'Archivo', sans-serif;
+            color: #000;
+        }
         .column{
             display: flex;
             flex-direction: column;
@@ -128,13 +133,13 @@
     <div class="column">
         <h1 class="header">Groepenzoeker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html'">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html';">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html'">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html';">
                 <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='groups.html';">
                 <p class="plain-text" style="font-weight: bold; background-color: #14AD54;">My Groups</p>
             </div>
         </div>
@@ -172,7 +177,7 @@
                     <input class="input" type="checkbox" id="looking" style="width: 20px; height:20px; margin-left: 20pt">
                 </div>
                 <div class="center-row">
-                    <button class="confirmation-button" onclick="location.href='chat.html'">Create group</button>
+                    <button class="confirmation-button" onclick="doSave()">Create group</button>
                 </div>
             </div>
             <div class="column" style="width:50%; margin: 0pt 60pt">
@@ -184,3 +189,17 @@
     </div>
 </body>
 </html>
+
+<script>
+    nameInput = document.getElementById('g_name');
+    function doSave() {
+        if (nameInput.value.length > 0) {
+            var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
+            if (!currentValue)
+                currentValue = [];
+            currentValue.push(nameInput.value);
+            localStorage.setItem("HCIGroups", JSON.stringify(currentValue));
+            window.location.href = 'chat.html?Title=" + nameInput.value + "&Icon=emoji_food_beverage';
+        }
+    }
+</script>

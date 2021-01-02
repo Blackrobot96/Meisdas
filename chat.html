@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>      
-    body {
-        background: #EEE;
-    }
+<style>
+     * {
+        margin: 0;
+        box-sizing: border-box;
+        }
+        body {
+            background: #EEE;
+            font-family: 'Archivo', sans-serif;
+            color: #000;
+        }
 
     .column{
         display: flex;
@@ -123,22 +129,21 @@
 </head>
 <body>
     <div class="column">
-        <h1 class="header">Groepenzoecker</h1>
+        <h1 class="header">Groepenzoeker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html'">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html';">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html'">
-                <p class="plain-text" style="font-weight: bold;" >Finder</p>
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html';">
+                <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='groups.html';">
                 <p class="plain-text" style="font-weight: bold; background-color: #14AD54;">My Groups</p>
             </div>
         </div>
-    
         <div class="start-row">
-            <button class="button" onclick="location.href='groups.html'">&#8592</button>
-            <div class="groupname">Gruppe 1</div>
+            <div class="button" onclick="location.href='groups.html';">&#8592</div>
+            <div id="title" class="groupname"></div>
         </div>
         <div class="row">            
             <div class="textarea" id="textarea" contenteditable="false">
@@ -157,3 +162,14 @@
     </div>
 </body>
 </html>
+
+<script>
+    icon = document.getElementById('icon');
+    title = document.getElementById('title');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    titleText = urlParams.get('Title');
+    iconText = urlParams.get('Icon');
+    title.innerHTML = titleText;
+    icon.innerHTML = iconText;
+</script>
