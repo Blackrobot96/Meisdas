@@ -71,6 +71,7 @@
         }
 
         .confirmation-button{
+            margin: 10pt 0;
             background-color:#14AD54;
             font-size: 24pt;
             font-weight: bold;
@@ -110,6 +111,15 @@
 
         .dropdown:hover .dropbtn {background-color: darkgrey;}
 
+        .button {
+            font-size: 24pt;
+            border: 2px solid #00519E;
+            padding-left: 10pt;
+            padding-right: 10pt;
+            margin: 10pt 0;
+            width: 50pt;
+        }
+
     </style>
 <script>
 </script>
@@ -118,10 +128,10 @@
     <div class="column">
         <h1 class="header">Groepenzoeker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html'">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html'">
                 <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
             <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
@@ -130,6 +140,7 @@
         </div>
         <div class="row">
             <div class="column" style="width:50%; margin: 0pt 60pt">
+                <button class="button" onclick="location.href='groups.html'">&#8592</button>
                 <p class="settings-text">Create Group:</p>
                 <div class="row">
                     <p class="settings-text">Name:</p>
@@ -161,7 +172,7 @@
                     <input class="input" type="checkbox" id="looking" style="width: 20px; height:20px; margin-left: 20pt">
                 </div>
                 <div class="center-row">
-                    <button class="confirmation-button">Create group</button>
+                    <button class="confirmation-button" onclick="location.href='chat.html'">Create group</button>
                 </div>
             </div>
             <div class="column" style="width:50%; margin: 0pt 60pt">
