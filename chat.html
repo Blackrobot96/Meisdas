@@ -5,12 +5,13 @@
      * {
         margin: 0;
         box-sizing: border-box;
-        }
-        body {
+    }
+
+    body {
             background: #EEE;
             font-family: 'Archivo', sans-serif;
             color: #000;
-        }
+    }
 
     .column{
         display: flex;
@@ -42,7 +43,6 @@
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        justify-content: flex-start;
         padding-top: 15pt;
         padding-bottom: 15pt;
     }
@@ -143,7 +143,9 @@
         </div>
         <div class="start-row">
             <div class="button" onclick="location.href='groups.html';">&#8592</div>
-            <div id="title" class="groupname"></div>
+            <div id="title" class="groupname">
+            </div>
+            <button class="button" style="width: 105px; font-size:15pt; position: absolute; right: 20px;" onclick="location.href='settings.html'">Settings</button>
         </div>
         <div class="row">            
             <div class="textarea" id="textarea" contenteditable="false">
