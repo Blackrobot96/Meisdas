@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>      
+<style>
+    * {
+        margin: 0;
+        box-sizing: border-box;
+    }
+
     body {
         background: #EEE;
     }
@@ -36,7 +41,6 @@
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        justify-content: flex-start;
         padding-top: 15pt;
         padding-bottom: 15pt;
     }
@@ -138,7 +142,10 @@
     
         <div class="start-row">
             <button class="button" onclick="location.href='groups.html'">&#8592</button>
-            <div class="groupname">Gruppe 1</div>
+            <div class="groupname">
+                Gruppe 1
+                <button class="button" style="width: 105px; font-size:15pt; position: absolute; right: 20px;" onclick="location.href='settings.html'">Settings</button>
+            </div>
         </div>
         <div class="row">            
             <div class="textarea" id="textarea" contenteditable="false">
