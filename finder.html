@@ -214,6 +214,18 @@
     }
 
     function gotoSite() {
+        var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
+        if (!currentValue)
+            currentValue = [];
+        var contains = false;
+        for (key in currentValue)
+        {
+            if (currentValue[key] === cards[cardIndex].Title)
+                contains = true;
+        }
+        if (!contains)
+            currentValue.push(cards[cardIndex].Title);
+        localStorage.setItem("HCIGroups", JSON.stringify(currentValue));
         window.location.href = "join.html?Title=" + cards[cardIndex].Title + "&Icon=" + cards[cardIndex].Image ;
     }
     renderCard();
