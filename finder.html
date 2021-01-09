@@ -229,4 +229,16 @@
         window.location.href = "join.html?Title=" + cards[cardIndex].Title + "&Icon=" + cards[cardIndex].Image ;
     }
     renderCard();
+
+    document.addEventListener('keydown', page)
+    function page(event) {
+        if (event.code == 'ArrowLeft' && cardIndex > 0) {
+            cardIndex--;
+            renderCard();
+        }
+        else if (event.code == 'ArrowRight' && cardIndex < cards.length) {
+            cardIndex++;
+            renderCard();
+        }
+    }
 </script>

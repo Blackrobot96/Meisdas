@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         .column {
             display: flex;
@@ -82,17 +83,16 @@
         button {
             margin: 10px auto;
             font-size: 30px;
-            width: calc(100% / 2);
+            width: 400px;
         }
 
         .icons {
-            width: 100%;
-            padding: 20px;
+            height: 38px;
+            width: 50px;
             font-family: 'Material Icons';
             text-align: center;
             font-weight: normal;
             font-style: normal;
-            font-size: 140px;
             display: inline-block;
             line-height: 1;
             text-transform: none;
@@ -111,6 +111,12 @@
 
             /* Support for IE. */
             font-feature-settings: 'liga';
+        }
+
+        .group {
+            display: flex;
+            width: fit-content;
+            margin: auto;
         }
     </style>
 </head>
@@ -145,7 +151,23 @@
     groups = JSON.parse(localStorage.getItem("HCIGroups"));
     if (groups) {
         for (var i = 0; i < groups.length; i++) {
-            groupDiv.innerHTML += "<button onclick=\"location.href='chat.html?Title=" + groups[i] + "&Icon=emoji_food_beverage';\">" + groups[i] + "</button>";
+            groupDiv.innerHTML += "<div class=\"group\"><button onclick=\"location.href='chat.html?Title=" + groups[i] + "&Icon=emoji_food_beverage';\">" + groups[i] + "</button><button class=\"icons\" onclick=\"leaveGroup(\'" + groups[i] + "\')\">exit_to_app</button></div>";
         }
     }
+
+    function leaveGroup(titleText) {
+        var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
+        if (!currentValue)
+            currentValue = [];
+        var contains = false;
+        var newValue = [];
+        for (key in currentValue)
+        {
+            if (currentValue[key] !== titleText)
+                newValue.push(currentValue[key])
+        }
+        localStorage.setItem("HCIGroups", JSON.stringify(newValue));
+        window.location.href = "groups.html";
+    }
+
 </script>

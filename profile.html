@@ -80,10 +80,23 @@
             font-size: 30px;
             width: calc(100% / 2);
         }
+        .dialog {
+            padding: 20px;
+            margin: auto;
+        }
     </style>
 </head>
 
 <body>
+    <dialog id="dialog" class="dialog">
+        <form method="post">
+            <div style="display: flex;"><label for="email" class="settings-text">Please enter your current password: </label><input style="height: 30px; align-self: center;" id="confpassword" type="password" /></div>
+         </form>  
+         <div style="display: flex;">
+            <button onclick="doSave()">Save</button>
+            <button onclick="closeDialog()">Cancel</button>
+        </div>
+     </dialog>
     <div class="column">
         <h1 class="header">Groepenzoeker</h1>
         <div class="row">
@@ -110,7 +123,7 @@
                     <p class="settings-text">Password:</p>
                     <input class="input" type="password" value="qwertz123">
                 </div>
-                <button onclick="doSave()">Save</button>
+                <button onclick="check()">Save</button>
             </div>
         </div>
     </div>
@@ -121,7 +134,20 @@
 <script>
     userInput = document.getElementById('username');
     userInput.value = localStorage.getItem("HCIUsername");
+    dialog = document.getElementById('dialog');
+    confpassword = document.getElementById('confpassword');
+    function check() {
+        dialog.showModal();
+    }
     function doSave() {
-        localStorage.setItem("HCIUsername", userInput.value);
+        if (confpassword.value.length > 0) {
+            confpassword.value = "";
+            closeDialog();
+            localStorage.setItem("HCIUsername", userInput.value);
+        }
+    }
+
+    function closeDialog() {
+        dialog.close();
     }
 </script>

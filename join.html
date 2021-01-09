@@ -136,6 +136,8 @@
                 <h1 style="text-align:center">Congratulations!</h1>
                 <h2 style="text-align:center" id="title"></h2>
                 <button onclick="gotoSite()">Open Chat</button>
+                <button onclick="leaveGroup()">Leave Group</button>
+                <button onclick="location.href='finder.html';">Back to Finder</button>
             </div>
         </div>
     </div>
@@ -155,5 +157,20 @@
 
     function gotoSite() {
         window.location.href = "chat.html?Title=" + titleText + "&Icon=" + iconText ;
+    }
+
+    function leaveGroup() {
+        var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
+        if (!currentValue)
+            currentValue = [];
+        var contains = false;
+        var newValue = [];
+        for (key in currentValue)
+        {
+            if (currentValue[key] !== titleText)
+                newValue.push(currentValue[key])
+        }
+        localStorage.setItem("HCIGroups", JSON.stringify(newValue));
+        window.location.href = "finder.html";
     }
 </script>

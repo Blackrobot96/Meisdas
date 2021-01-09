@@ -107,18 +107,39 @@
         font-family:"Calibri";
         height: 300px;
         width: 400px;
-        font-size:12pt
+        font-size:12pt;
     }
 
-</style>
-<script>
-    function send(){
-        if(document.getElementById("input").value != ""){
-            document.getElementById("chat").innerHTML += "You: " + document.getElementById("input").value + "<br/>";
-            document.getElementById("input").value = "";
+
+    .icons {
+            line-height: 15pt;
+            font-family: 'Material Icons';
+            text-align: center;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 12pt;
+            display: inline-block;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            user-select: none;
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+            padding-left: 10px;
         }
-    }
-</script>
+
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="column">
@@ -139,6 +160,7 @@
             <div id="title" class="groupname">
             </div>
             <button class="button" style="width: 105px; font-size:15pt; position: absolute; right: 20px;" onclick="openSettings()">Settings</button>
+            <button class="button" style="width: 150px; font-size:15pt; position: absolute; right: 140px;" onclick="leaveGroup()">Leave Group</button>
         </div>
         <div class="row">            
             <div class="textarea" id="textarea" contenteditable="false">
@@ -165,7 +187,49 @@
     titleText = urlParams.get('Title');
     title.innerHTML = titleText;
 
+    function leaveGroup() {
+        var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
+        if (!currentValue)
+            currentValue = [];
+        var contains = false;
+        var newValue = [];
+        for (key in currentValue)
+        {
+            if (currentValue[key] !== titleText)
+                newValue.push(currentValue[key])
+        }
+        localStorage.setItem("HCIGroups", JSON.stringify(newValue));
+        window.location.href = "groups.html";
+    }
+
     function openSettings() {
         location.href='settings.html?Title=' + titleText;
+    }
+    messages = [];
+
+    function renderMessages() {
+        var text = "";
+        for (key in messages) {
+            text += "<div style=\"display: flex\">You: " + messages[key] + "<i class=\"icons\" onclick=\"unsend('" + key +"')\">close</i></div>";
+        }
+        document.getElementById("chat").innerHTML = text;
+    }
+
+    function send(){
+        messages.push(document.getElementById("input").value);
+        document.getElementById("input").value = "";
+        renderMessages();
+    }
+
+    function unsend(delKey)
+    {
+        var newMessages = [];
+        for (key in messages) {
+            if (key === delKey)
+                continue;
+            newMessages.push(messages[key]);
+        }
+        messages = newMessages;
+        renderMessages();
     }
 </script>
