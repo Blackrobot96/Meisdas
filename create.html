@@ -2,11 +2,12 @@
 <html>
 <head>
     <style>
-
+        
         * {
         margin: 0;
         box-sizing: border-box;
         }
+
         body {
             background: #EEE;
             font-family: 'Archivo', sans-serif;
@@ -80,6 +81,7 @@
             background-color:#14AD54;
             font-size: 24pt;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .dropdown{
@@ -103,6 +105,7 @@
             height: 20px;
             font-size: 16px;
             border: none;
+            cursor: pointer;
         }
 
         .option{
@@ -124,6 +127,71 @@
             padding-right: 10pt;
             margin: 10pt 0;
             width: 50pt;
+            cursor: pointer;
+        }
+
+        .footer{
+            display: flex;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 6%;
+            width: 100%;
+            background-color: #00519E;
+            color: white;
+            align-content: center;
+        }
+
+        .help-button{
+            align-self: center;
+            font-size: 16pt;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .modal{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            overflow: auto;
+            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+        }
+
+        .modal-content{
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            border: 1px solid #888;
+            background-color: white;
+            border-radius: 15px;
+            color: black;
+        }
+
+        .close{
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .show-modal {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1.0);
+            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
         }
 
     </style>
@@ -134,13 +202,13 @@
     <div class="column">
         <h1 class="header">Groepenzoeker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px; cursor: pointer;" onclick="location.href='profile.html';">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px; cursor: pointer;" onclick="location.href='finder.html';">
                 <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='groups.html';">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px; cursor: pointer;" onclick="location.href='groups.html';">
                 <p class="plain-text" style="font-weight: bold; background-color: #14AD54;">My Groups</p>
             </div>
         </div>
@@ -187,6 +255,29 @@
                     <button class="confirmation-button" style="margin-top: 50px; align-self:center;">Add members</button>
             </div>
         </div> 
+        <div class="footer" style="justify-content: center;">
+            <button class="help-button">Help</button>
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p class="settings-text" style="font-size: 18pt">
+                        <span style="font-weight: bold">Group creation helpdesk:</span>
+                        <br>Welcome to the group creation menu. Here you can create the group of your dreams and set the settings to your liking.
+                        <br><span style="font-weight: bold">Name:</span>
+                        <br>Here you can choose any name that you would like your group to have
+                        <br><span style="font-weight: bold">Categories:</span>
+                        <br>Choose from multiple categories you want your group to be associated with.
+                        <br>To make more than one selection hold <span style="font-weight: bold">CTRL</span> while making your selections.
+                        <br><span style="font-weight: bold">Member limit:</span>
+                        <br>Set the maximum amount of members for your group. Has to be a number.
+                        <br><span style="font-weight: bold">Looking for members:</span>
+                        <br>Mark the tickbox if you are looking for members and want your group to be visible in the groupfinder.
+                        <br><span style="font-weight: bold">Add members:</span>
+                        <br>Open a menu with a list of people you know that you can add to your group on creation or even after in the settings.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
@@ -203,4 +294,19 @@
             window.location.href = "chat.html?Title=" + nameInput.value + "&Icon=emoji_food_beverage";
         }
     }
+
+    function toggleModal() {
+        document.querySelector(".modal").classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+        if (event.target === modal) {
+            toggleModal();
+        }
+    }
+
+    document.querySelector(".help-button").addEventListener("click", toggleModal);
+    document.querySelector(".close").addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+
 </script>
