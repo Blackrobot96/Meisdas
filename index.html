@@ -168,6 +168,10 @@
 <script>
     userInput = document.getElementById('username');
     function doLogin() {
+        if(userInput.value.length == 0){
+            alert("Please enter a valid username with at least one character");
+            return;
+        }
         localStorage.setItem("HCIUsername", userInput.value);
         window.location.href = "finder.html";
     }

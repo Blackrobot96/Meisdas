@@ -206,7 +206,7 @@
         <div class="row">
             <div class="column" style="width:50%; margin: 0pt 60pt">
                 <button class="button" onclick="location.href='groups.html'">&#8592</button>
-                <p class="settings-text">Settings:</p>
+                <p class="settings-text" style="font-weight: bold;">Settings:</p>
                 <div class="row">
                     <p class="settings-text">Name:</p>
                     <input class="input" type="text" id="g_name">
@@ -249,6 +249,7 @@
     </div>
     <div class="footer" style="justify-content: center;">
         <button class="help-button">Help</button>
+        <button class="help-button" onclick="location.href='index.html';">Log Out</button>
         <div class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -294,6 +295,8 @@
             }
             localStorage.setItem("HCIGroups", JSON.stringify(currentValue));
             window.location.href = "chat.html?Title=" + nameInput.value + "&Icon=emoji_food_beverage";
+        } else {
+            alert("Please enter a name at least one character long");
         }
     }
     
