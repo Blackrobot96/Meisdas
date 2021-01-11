@@ -244,6 +244,7 @@
     </div>
     <div class="footer" style="justify-content: center;">
         <button class="help-button">Help</button>
+        <button class="help-button" onclick="location.href='index.html';">Log Out</button>
         <div class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -300,6 +301,10 @@
     }
 
     function send(){
+        if(document.getElementById("input").value.length == 0){
+            alert("You cannot send empty messages. Please enter at least one character.");
+            return;
+        }
         messages.push(document.getElementById("input").value);
         document.getElementById("input").value = "";
         renderMessages();
