@@ -69,6 +69,7 @@
     }
 
     .footer{
+        justify-content: space-around;
         display: flex;
         position: fixed;
         left: 0;
@@ -148,7 +149,7 @@
             </div>
         </div>
     </div>
-    <div class="footer" style="justify-content: center;">
+    <div class="footer">
         <button class="help-button">Help</button>
         <div class="modal">
             <div class="modal-content">
@@ -180,14 +181,8 @@
         document.querySelector(".modal").classList.toggle("show-modal");
     }
 
-    function windowOnClick(event) {
-        if (event.target === modal) {
-            toggleModal();
-        }
-    }
-
     document.querySelector(".help-button").addEventListener("click", toggleModal);
     document.querySelector(".close").addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
+    document.querySelector(".modal").addEventListener("click", toggleModal);
 
 </script>

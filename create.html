@@ -132,6 +132,7 @@
         }
 
         .footer{
+            justify-content: space-around;
             display: flex;
             position: fixed;
             left: 0;
@@ -256,7 +257,7 @@
                     <button class="confirmation-button" style="margin-top: 50px; align-self:center;">Add members</button>
             </div>
         </div> 
-        <div class="footer" style="justify-content: center;">
+        <div class="footer">
             <button class="help-button">Help</button>
             <button class="help-button" onclick="location.href='index.html';">Log Out</button>
             <div class="modal">
@@ -303,14 +304,8 @@
         document.querySelector(".modal").classList.toggle("show-modal");
     }
 
-    function windowOnClick(event) {
-        if (event.target === modal) {
-            toggleModal();
-        }
-    }
-
     document.querySelector(".help-button").addEventListener("click", toggleModal);
     document.querySelector(".close").addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
+    document.querySelector(".modal").addEventListener("click", toggleModal);
 
 </script>
