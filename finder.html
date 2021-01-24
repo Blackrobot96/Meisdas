@@ -61,8 +61,7 @@
         }
 
         .input {
-            height: 20px;
-            margin: 0pt 20pt;
+            height: 30px;
             align-self: center;
         }
 
@@ -226,6 +225,12 @@
         <div class="row">
             <div class="column" style="width:50%; margin: 0pt 60pt">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <p class="settings-text">University Course:</p>
+                <select onchange="filterCards()" class="input" id="filter">
+                    <option value="all">All</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Philosophy">Philosophy</option>
+                  </select>
                 <div id="card">
                     <i id="icon" class="icons"></i>
                     <h2 id="title"></h2>
@@ -272,7 +277,7 @@
         { "Title": "Group 2", "Description": " - Meeting: twice a week <br> - Mixed group <br>  - Philosophy", "Image": "emoji_food_beverage" },
         { "Title": "Group 3", "Description": " - Meeting: once a week <br> - Mostly male <br>  - Computer Science", "Image": "history_edu" },
         { "Title": "Group 4", "Description": " - Meeting: once a week <br> - Mostly male <br>  - Computer Science", "Image": "connect_without_contact" },
-        { "Title": "Group 5", "Description": " - Meeting: once a week <br> - Mostly male <br>  - Computer Science", "Image": "emoji_people" },
+        { "Title": "Group 5", "Description": " - Meeting: once a week <br> - Mostly male <br>  - Philosophy", "Image": "emoji_people" },
         { "Title": "Group 6", "Description": " - Meeting: once a week <br> - Mostly male <br>  - Computer Science", "Image": "school" }
     ];
     groups = JSON.parse(localStorage.getItem("HCIGroups"));
@@ -284,6 +289,27 @@
             }
         }
     }
+    origCards = null;
+    function filterCards() {
+        if (origCards == null)
+            origCards = cards;
+        cards = [];
+        var filter = document.getElementById("filter");
+        var text = filter.options[filter.selectedIndex].text;
+        if (text == "All") {
+            cards = origCards;
+            cardIndex = 0;
+            renderCard();
+            return;
+        }
+        for (var j = 0; j < origCards.length; j++) {
+            if (origCards[j].Description.includes(text))
+                cards.push(origCards[j])
+        }
+        cardIndex = 0;
+        renderCard()
+    }
+
     function renderCard() {
         if (cardIndex < cards.length) {
             title.innerHTML = cards[cardIndex].Title;

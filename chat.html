@@ -225,7 +225,7 @@
             <div class="button" onclick="location.href='groups.html';">&#8592</div>
             <div id="title" class="groupname">
             </div>
-            <button class="button" style="width: 105px; font-size:15pt; position: absolute; right: 20px;" onclick="openSettings()">Settings</button>
+            <button id="settingsButton" class="button" style="width: 105px; font-size:15pt; position: absolute; right: 20px;" onclick="openSettings()">Settings</button>
             <button class="button" style="width: 150px; font-size:15pt; position: absolute; right: 140px;" onclick="leaveGroup()">Leave Group</button>
         </div>
         <div class="row">            
@@ -272,7 +272,15 @@
     const urlParams = new URLSearchParams(queryString);
     titleText = urlParams.get('Title');
     title.innerHTML = titleText;
-
+    
+    var admins = JSON.parse(localStorage.getItem("HCIAdmin"));
+    var settingsButton = document.getElementById('settingsButton');
+    if (admins != null && admins.includes(titleText)) {
+        settingsButton.style.display = 'Visible';
+    } else {
+        settingsButton.style.display = 'None';
+    }
+    
     function leaveGroup() {
         var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
         if (!currentValue)

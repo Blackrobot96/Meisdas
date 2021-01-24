@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         * {
-        margin: 0;
-        box-sizing: border-box;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -12,78 +13,73 @@
             font-family: 'Archivo', sans-serif;
             color: #000;
         }
-        
-        .column{
+
+        .column {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
 
-        .row{
+        .row {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
         }
 
-        .space-row{
+        .space-row {
             display: flex;
             flex-flow: row wrap;
             justify-content: space-evenly;
         }
 
-        .center-row{
+        .center-row {
             display: flex;
             flex-flow: row wrap;
             align-items: center;
             justify-content: center;
         }
 
-        .header{
+        .header {
             background-color: #00519E;
             color: #fff;
             font-size: 24pt;
             margin: 0pt;
             padding: 15pt 5pt;
-            font-family:"Calibri";
+            font-family: "Calibri";
         }
 
-        .input{
+        .input {
             color: black;
             font-size: 14pt;
             width: 100%;
-            font-family:"Calibri";
+            font-family: "Calibri";
+            height: 30px;
         }
 
-        .plain-text{
+        .plain-text {
             color: black;
             font-size: 24pt;
-            font-family:"Calibri";
+            font-family: "Calibri";
             text-align: center;
             width: fit-content;
-            border-radius:5px;
+            border-radius: 5px;
             padding: 5px;
         }
 
-        .settings-text{
+        .settings-text {
             color: black;
             font-size: 24pt;
-            font-family:"Calibri";
+            font-family: "Calibri";
         }
 
-        .input{
-            height: 20px;
-            margin: 0pt 20pt;
-            align-self: center;
-        }
-
-        .confirmation-button{
+        .confirmation-button {
             margin: 10pt 0;
-            background-color:#14AD54;
+            background-color: #14AD54;
             font-size: 24pt;
             font-weight: bold;
         }
 
-        .dropdown{
+        .dropdown {
             margin-left: 20pt;
             align-items: center;
             align-self: center;
@@ -91,11 +87,11 @@
             display: inline-block;
         }
 
-        .dropdown-content{
+        .dropdown-content {
             display: none;
             position: absolute;
             background-color: #f1f1f1;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -107,17 +103,23 @@
             border: none;
         }
 
-        .option{
-            font-family: "Calibri";            
+        .option {
+            font-family: "Calibri";
             font-size: 20pt;
         }
 
 
-        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
 
-        .dropdown:hover .dropdown-content {display: block;}
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-        .dropdown:hover .dropbtn {background-color: darkgrey;}
+        .dropdown:hover .dropbtn {
+            background-color: darkgrey;
+        }
 
         .button {
             font-size: 24pt;
@@ -128,83 +130,85 @@
             width: 50pt;
         }
 
-        .footer{
+        .footer {
             justify-content: space-around;
-        display: flex;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        height: 6%;
-        width: 100%;
-        background-color: #00519E;
-        color: white;
-        align-content: center;
-    }
+            display: flex;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 6%;
+            width: 100%;
+            background-color: #00519E;
+            color: white;
+            align-content: center;
+        }
 
-    .help-button{
-        align-self: center;
-        font-size: 16pt;
-        border-radius: 5px;
-        cursor: pointer;
-        padding: 5px;
-    }
+        .help-button {
+            align-self: center;
+            font-size: 16pt;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
 
-    .modal{
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        visibility: hidden;
-        overflow: auto;
-        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-    }
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            overflow: auto;
+            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+        }
 
-    .modal-content{
-        margin: 15% auto;
-        padding: 20px;
-        width: 80%;
-        border: 1px solid #888;
-        background-color: white;
-        border-radius: 15px;
-        color: black;
-    }
+        .modal-content {
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            border: 1px solid #888;
+            background-color: white;
+            border-radius: 15px;
+            color: black;
+        }
 
-    .close{
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-    .show-modal {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1.0);
-        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-    }
-
+        .show-modal {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1.0);
+            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+        }
     </style>
-<script>
-</script>
+    <script>
+    </script>
 </head>
+
 <body>
     <div class="column">
         <h1 class="header">Groepenzoeker</h1>
         <div class="row">
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='profile.html'">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;"
+                onclick="location.href='profile.html'">
                 <p class="plain-text" style="font-weight: bold;">My Profile</p>
             </div>
-            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;" onclick="location.href='finder.html'">
+            <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;"
+                onclick="location.href='finder.html'">
                 <p class="plain-text" style="font-weight: bold;">Finder</p>
             </div>
             <div class="column" style="border: 1px solid #000; width: 33.3%; align-items: center; height: 70px;">
@@ -215,45 +219,37 @@
             <div class="column" style="width:50%; margin: 0pt 60pt">
                 <button class="button" onclick="location.href='groups.html'">&#8592</button>
                 <p class="settings-text" style="font-weight: bold;">Settings:</p>
-                <div class="row">
-                    <p class="settings-text">Name:</p>
-                    <input class="input" type="text" id="g_name">
-                </div>
-                <div class="row" style="justify-content: flex-start;">
-                    <p class="settings-text">Categories:</p>
-                    <div class="dropdown">
-                        <button class="dropbtn">...</button>
-                        <div class="dropdown-content">
-                            <select multiple>
-                                <option class="option">Computer Science</option>
-                                <option class="option">Math</option>
-                                <option class="option">Biology</option>
-                                <option class="option">Chemistry</option>
-                                <option class="option">Law</option>
-                                <option class="option">Engineering</option>
-                                <option class="option">...</option>
-                            </select>
-                        </div>
+                <p class="settings-text">Name:</p>
+                <input class="input" type="text" id="g_name">
+                <p class="settings-text">Categories:</p>
+                <div class="dropdown">
+                    <button class="dropbtn">...</button>
+                    <div class="dropdown-content">
+                        <select multiple>
+                            <option class="option">Computer Science</option>
+                            <option class="option">Math</option>
+                            <option class="option">Biology</option>
+                            <option class="option">Chemistry</option>
+                            <option class="option">Law</option>
+                            <option class="option">Engineering</option>
+                            <option class="option">...</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row" style="justify-content: flex-start;">
-                    <p class="settings-text">Member limit:</p>
-                    <input class="input" type="number" id="m_limit">
-                </div>
-                <div class="row" style="justify-content: flex-start;">
-                    <p class="settings-text">Looking for members:</p>
-                    <input class="input" type="checkbox" id="looking" style="width: 20px; height:20px; margin-left: 20pt">
-                </div>
+                <p class="settings-text">Member limit:</p>
+                <input class="input" type="number" id="m_limit">
+                <p class="settings-text">Looking for members:</p>
+                <input class="input" type="checkbox" id="looking" style="width: 20px; height:20px; margin-left: 20pt">
                 <div class="center-row">
                     <button class="confirmation-button" onclick="doSave()">Save changes</button>
                 </div>
             </div>
             <div class="column" style="width:50%; margin: 0pt 60pt">
-                    <p class="settings-text" style="margin-bottom: 0px;">Member list:</p>
-                    <div class="row" style="border: 1px solid #000; height:90%; margin-right: 10pt"></div>
-                    <button class="confirmation-button" style="margin-top: 50px; align-self:center;">Add members</button>
+                <p class="settings-text" style="margin-bottom: 0px;">Member list:</p>
+                <div class="row" style="border: 1px solid #000; height:90%; margin-right: 10pt"></div>
+                <button class="confirmation-button" style="margin-top: 50px; align-self:center;">Add members</button>
             </div>
-        </div> 
+        </div>
     </div>
     <div class="footer">
         <button class="help-button">Help</button>
@@ -268,20 +264,25 @@
                     <br>Here you can choose any name that you would like your group to have
                     <br><span style="font-weight: bold">Categories:</span>
                     <br>Choose from multiple categories you want your group to be associated with.
-                    <br>To make more than one selection hold <span style="font-weight: bold">CTRL</span> while making your selections.
+                    <br>To make more than one selection hold <span style="font-weight: bold">CTRL</span> while making
+                    your selections.
                     <br><span style="font-weight: bold">Member limit:</span>
                     <br>Set the maximum amount of members for your group. Has to be a number.
                     <br><span style="font-weight: bold">Looking for members:</span>
-                    <br>Mark the tickbox if you are looking for members and want your group to be visible in the groupfinder.
+                    <br>Mark the tickbox if you are looking for members and want your group to be visible in the
+                    groupfinder.
                     <br><span style="font-weight: bold">Add members:</span>
-                    <br>Open a menu with a list of people you know that you can add to your group on creation or even after in the settings.
+                    <br>Open a menu with a list of people you know that you can add to your group on creation or even
+                    after in the settings.
                     <br><span style="font-weight: bold">Creating the group:</span>
-                    <br>To finalize the creation process click the "Save Changes" button beneath the settings. Don't worry, you can edit the settings later.
+                    <br>To finalize the creation process click the "Save Changes" button beneath the settings. Don't
+                    worry, you can edit the settings later.
                 </p>
             </div>
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
@@ -291,23 +292,40 @@
     titleText = urlParams.get('Title');
     nameInput.value = titleText;
 
+    document.addEventListener("keydown", event => {
+        if (event.ctrlKey && event.keyCode === 83) {
+            event.preventDefault();
+            doSave()
+            return;
+        }
+    });
+
     function doSave() {
         if (nameInput.value.length > 0) {
             var currentValue = JSON.parse(localStorage.getItem("HCIGroups"));
             if (!currentValue)
                 currentValue = [];
-            for (key in currentValue)
-            {
+            for (key in currentValue) {
                 if (currentValue[key] === titleText)
                     currentValue[key] = nameInput.value;
             }
             localStorage.setItem("HCIGroups", JSON.stringify(currentValue));
+            
+            var admins = JSON.parse(localStorage.getItem("HCIAdmin"));
+            if (!admins)
+                admins = [];
+            for (key in admins) {
+                if (admins[key] === titleText)
+                    admins[key] = nameInput.value;
+            }
+            localStorage.setItem("HCIAdmin", JSON.stringify(admins));
+            
             window.location.href = "chat.html?Title=" + nameInput.value + "&Icon=emoji_food_beverage";
         } else {
             alert("Please enter a name at least one character long");
         }
     }
-    
+
     function toggleModal() {
         document.querySelector(".modal").classList.toggle("show-modal");
     }
